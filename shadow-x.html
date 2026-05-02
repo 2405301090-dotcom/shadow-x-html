@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHADOW-X Sunglasses — Own The Light</title>
+    <meta name="description"
+        content="SHADOW-X premium sunglasses. Precision crafted frames with fearless energy and maximum presence.">
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #ff003c;
+            --red-glow: rgba(255, 0, 60, 0.4);
+            --dark: #0a0a0a;
+            --white: #ffffff;
+            --gray: #888;
+            --light-bg: #f5f5f7;
+        }
+
+        body {
+            background: var(--white);
+            color: var(--dark);
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        .logo,
+        nav ul li,
+        .btn,
+        .price,
+        .badge {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* ═══════════ CUSTOM CURSOR GLOW ═══════════ */
+        .cursor-glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 0, 60, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease;
+        }
+
+        /* ═══════════ NAVBAR ═══════════ */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            position: fixed;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            padding: 12px 8%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--red);
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--red);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover::after {
+            transform: scaleX(1);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav ul li {
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            color: var(--dark);
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li:hover {
+            color: var(--red);
+        }
+
+        nav ul li:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .nav-toggle span {
+            width: 28px;
+            height: 2px;
+            background: var(--dark);
+            transition: 0.3s;
+        }
+
+        /* ═══════════ HERO SECTION ═══════════ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 0, 60, 0.05) 0%, transparent 70%);
+            animation: pulse-bg 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse-bg {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        .hero-text {
+            max-width: 550px;
+            z-index: 2;
+            animation: fadeInLeft 1s ease forwards;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-text .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(255, 0, 60, 0.08);
+            color: var(--red);
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: 700;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 0, 60, 0.15);
+        }
+
+        .hero-text h1 {
+            font-size: 64px;
+            line-height: 1.05;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .hero-text h1 span {
+            color: var(--red);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-text h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 0, 60, 0.15);
+            z-index: -1;
+        }
+
+        .hero-text p {
+            margin: 25px 0 35px;
+            color: var(--gray);
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 420px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            background: var(--red);
+            border: none;
+            color: white;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 35px var(--red-glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background: var(--dark);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            padding: 16px 40px;
+            background: transparent;
+            border: 2px solid var(--dark);
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .btn-outline:hover {
+            background: var(--dark);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* HERO IMAGE */
+        .hero-img {
+            position: relative;
+            z-index: 2;
+            animation: fadeInRight 1s ease forwards;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-img img {
+            width: 520px;
+            animation: float 5s ease-in-out infinite;
+            filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.25));
+            border-radius: 20px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-25px) rotate(1deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        /* ═══════════ MARQUEE STRIP ═══════════ */
+        .marquee-strip {
+            background: var(--dark);
+            color: var(--white);
+            padding: 15px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            letter-spacing: 3px;
+            font-weight: 500;
+        }
+
+        .marquee-content span {
+            color: var(--red);
+            margin: 0 40px;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ═══════════ FEATURES SECTION ═══════════ */
+        .features {
+            padding: 100px 8%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .feature-card {
+            padding: 40px 30px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--red);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            border-color: transparent;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 16px;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* ═══════════ PRODUCTS SECTION ═══════════ */
+        .products {
+            padding: 120px 8%;
+            text-align: center;
+            background: var(--light-bg);
+            position: relative;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(255, 0, 60, 0.08);
+            color: var(--red);
+            font-size: 11px;
+            letter-spacing: 3px;
+            font-weight: 700;
+            border-radius: 50px;
+            margin-bottom: 15px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .products h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .products .section-desc {
+            color: var(--gray);
+            font-size: 15px;
+            margin-bottom: 60px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 24px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            border: 2px solid transparent;
+            transition: border-color 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-18px);
+            box-shadow: 0 25px 60px rgba(255, 0, 60, 0.12);
+        }
+
+        .card:hover::after {
+            border-color: var(--red);
+        }
+
+        .card-img-wrapper {
+            background: var(--light-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .card:hover .card-img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .card-label {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 5px 12px;
+            background: var(--red);
+            color: white;
+            font-size: 9px;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            border-radius: 6px;
+        }
+
+        .card-info {
+            text-align: left;
+            padding: 5px 5px 0;
+        }
+
+        .card-info h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .card-info .card-type {
+            color: var(--gray);
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .card-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px;
+        }
+
+        .price {
+            color: var(--red);
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .card-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--dark);
+            background: transparent;
+            color: var(--dark);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .card-btn:hover {
+            background: var(--red);
+            border-color: var(--red);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        /* ═══════════ BANNER SECTION ═══════════ */
+        .banner {
+            padding: 120px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .banner-text {
+            max-width: 500px;
+        }
+
+        .banner-text h2 {
+            font-size: 44px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .banner-text h2 span {
+            color: var(--red);
+        }
+
+        .banner-text p {
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        .banner-img {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .banner-img img {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ═══════════ STATS SECTION ═══════════ */
+        .stats {
+            padding: 80px 8%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--red);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: var(--gray);
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* ═══════════ NEWSLETTER ═══════════ */
+        .newsletter {
+            padding: 100px 8%;
+            text-align: center;
+            background: var(--light-bg);
+        }
+
+        .newsletter h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .newsletter p {
+            color: var(--gray);
+            margin-bottom: 40px;
+            font-size: 15px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 0;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 16px 25px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--red);
+        }
+
+        .newsletter-form button {
+            padding: 16px 35px;
+            background: var(--red);
+            border: none;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--dark);
+        }
+
+        /* ═══════════ FOOTER ═══════════ */
+        footer {
+            padding: 60px 8% 30px;
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand .logo {
+            font-size: 24px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            color: var(--gray);
+            font-size: 14px;
+            line-height: 1.7;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+            color: var(--gray);
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li:hover {
+            color: var(--red);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--red);
+            border-color: var(--red);
+            transform: translateY(-3px);
+        }
+
+        /* ═══════════ SCROLL REVEAL ═══════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ═══════════ RESPONSIVE ═══════════ */
+        @media(max-width: 1024px) {
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .card-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-top {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 120px;
+            }
+
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .btn-group {
+                justify-content: center;
+            }
+
+            .hero-img img {
+                width: 350px;
+                margin-top: 40px;
+            }
+
+            .hero-text h1 {
+                font-size: 42px;
+            }
+
+            .banner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+        }
+
+        @media(max-width: 600px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+
+        /* ═══════════ LOADING SCREEN ═══════════ */
+        .loader {
+            position: fixed;
+            inset: 0;
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.6s, visibility 0.6s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--red);
+            letter-spacing: 6px;
+            animation: loader-pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes loader-pulse {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(0.95);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOADER -->
+    <div class="loader" id="loader">
+        <div class="loader-text">SHADOW-X</div>
+    </div>
+
+    <!-- CURSOR GLOW -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="logo">SHADOW-X</div>
+        <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+            <span></span><span></span><span></span>
+        </div>
+        <ul id="navMenu">
+            <li onclick="closeNav()">Home</li>
+            <li onclick="closeNav()">Shop</li>
+            <li onclick="closeNav()">Collections</li>
+            <li onclick="closeNav()">About</li>
+            <li onclick="closeNav()">Contact</li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-text">
+            <div class="badge">✦ NEW COLLECTION 2026</div>
+            <h1>OWN THE <span>LIGHT</span></h1>
+            <p>Precision crafted frames. Fearless energy. Maximum presence. Engineered for those who lead, not follow.
+            </p>
+            <div class="btn-group">
+                <button class="btn" id="shopBtn">SHOP NOW</button>
+                <button class="btn-outline">EXPLORE ↗</button>
+            </div>
+        </div>
+        <div class="hero-img">
+            <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&q=80"
+                alt="SHADOW-X Premium Sunglasses">
+        </div>
+    </section>
+
+    <!-- MARQUEE STRIP -->
+    <div class="marquee-strip">
+        <div class="marquee-content">
+            PREMIUM EYEWEAR <span>✦</span> UV400 PROTECTION <span>✦</span> TITANIUM FRAMES <span>✦</span> FREE SHIPPING
+            <span>✦</span> 30 DAY RETURNS <span>✦</span> HANDCRAFTED QUALITY <span>✦</span> PREMIUM EYEWEAR
+            <span>✦</span> UV400 PROTECTION <span>✦</span> TITANIUM FRAMES <span>✦</span> FREE SHIPPING <span>✦</span>
+            30 DAY RETURNS <span>✦</span> HANDCRAFTED QUALITY <span>✦</span>
+        </div>
+    </div>
+
+    <!-- FEATURES -->
+    <section class="features">
+        <div class="feature-card reveal">
+            <div class="feature-icon">🛡️</div>
+            <h3>UV400 SHIELD</h3>
+            <p>Complete protection from harmful UVA & UVB rays with our advanced multi-layer coating technology.</p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">⚡</div>
+            <h3>TITANIUM BUILD</h3>
+            <p>Aircraft-grade titanium frames that are incredibly lightweight yet virtually indestructible.</p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">💎</div>
+            <h3>HANDCRAFTED</h3>
+            <p>Each pair is meticulously hand-finished by master artisans with over 200 precision steps.</p>
+        </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="products" id="products">
+        <div class="section-tag reveal">BESTSELLERS</div>
+        <h2 class="reveal">TOP COLLECTION</h2>
+        <p class="section-desc reveal">Handpicked icons from our latest drop. Bold frames. Zero compromise.</p>
+        <div class="card-container">
+            <div class="card reveal">
+                <div class="card-img-wrapper">
+                    <span class="card-label">HOT</span>
+                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&q=80"
+                        alt="Rage White Sunglasses">
+                </div>
+                <div class="card-info">
+                    <h3>RAGE WHITE</h3>
+                    <p class="card-type">Aviator • Titanium Frame</p>
+                </div>
+                <div class="card-bottom">
+                    <div class="price">₹4,999</div>
+                    <button class="card-btn">+</button>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-img-wrapper">
+                    <span class="card-label">NEW</span>
+                    <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&q=80"
+                        alt="Neon Edge Sunglasses">
+                </div>
+                <div class="card-info">
+                    <h3>NEON EDGE</h3>
+                    <p class="card-type">Wayfarer • Carbon Fiber</p>
+                </div>
+                <div class="card-bottom">
+                    <div class="price">₹5,499</div>
+                    <button class="card-btn">+</button>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1577803645773-f96470509666?w=400&q=80"
+                        alt="Urban Pro Sunglasses">
+                </div>
+                <div class="card-info">
+                    <h3>URBAN PRO</h3>
+                    <p class="card-type">Square • Acetate Frame</p>
+                </div>
+                <div class="card-bottom">
+                    <div class="price">₹6,299</div>
+                    <button class="card-btn">+</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANNER -->
+    <section class="banner">
+        <div class="banner-text reveal">
+            <div class="section-tag">LIMITED EDITION</div>
+            <h2>DESIGNED FOR THE <span>FEARLESS</span></h2>
+            <p>Our Shadow Collection merges bold aesthetics with cutting-edge lens technology. Anti-glare, anti-scratch,
+                and hydrophobic coating come standard.</p>
+            <button class="btn">VIEW COLLECTION</button>
+        </div>
+        <div class="banner-img reveal">
+            <img src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=600&q=80"
+                alt="Shadow Collection Sunglasses">
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+        <div class="stat-item reveal">
+            <div class="stat-number" data-target="50">0</div>
+            <div class="stat-label">Countries</div>
+        </div>
+        <div class="stat-item reveal">
+            <div class="stat-number" data-target="200">0</div>
+            <div class="stat-label">Retail Stores</div>
+        </div>
+        <div class="stat-item reveal">
+            <div class="stat-number" data-target="150">0</div>
+            <div class="stat-label">Frame Designs</div>
+        </div>
+        <div class="stat-item reveal">
+            <div class="stat-number" data-target="500">0</div>
+            <div class="stat-label">K+ Happy Customers</div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter">
+        <h2 class="reveal">STAY IN THE <span style="color:var(--red)">SHADOW</span></h2>
+        <p class="reveal">Get exclusive drops, early access & member-only discounts.</p>
+        <form class="newsletter-form reveal" onsubmit="handleSubscribe(event)">
+            <input type="email" placeholder="Enter your email" required id="emailInput">
+            <button type="submit">JOIN</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">SHADOW-X</div>
+                <p>Precision crafted eyewear for the bold and the fearless. Power in every frame since 2020.</p>
+            </div>
+            <div class="footer-col">
+                <h4>SHOP</h4>
+                <ul>
+                    <li>New Arrivals</li>
+                    <li>Bestsellers</li>
+                    <li>Aviators</li>
+                    <li>Wayfarers</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>COMPANY</h4>
+                <ul>
+                    <li>About Us</li>
+                    <li>Careers</li>
+                    <li>Press</li>
+                    <li>Blog</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>SUPPORT</h4>
+                <ul>
+                    <li>FAQ</li>
+                    <li>Shipping</li>
+                    <li>Returns</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 SHADOW-X. POWER IN EVERY FRAME.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Instagram">IG</a>
+                <a href="#" aria-label="Twitter">X</a>
+                <a href="#" aria-label="YouTube">YT</a>
+                <a href="#" aria-label="TikTok">TK</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ═══════════ LOADER ═══════════
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // ═══════════ CURSOR GLOW ═══════════
+        const cursorGlow = document.getElementById('cursorGlow');
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+
+        // ═══════════ NAVBAR SCROLL ═══════════
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ═══════════ MOBILE NAV ═══════════
+        function toggleNav() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+        function closeNav() {
+            document.getElementById('navMenu').classList.remove('active');
+        }
+
+        // ═══════════ SCROLL REVEAL ═══════════
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach((el, i) => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                const revealPoint = 100;
+
+                if (elementTop < windowHeight - revealPoint) {
+                    setTimeout(() => {
+                        el.classList.add('active');
+                    }, i * 80);
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', () => {
+            setTimeout(revealOnScroll, 1600);
+        });
+
+        // ═══════════ COUNTER ANIMATION ═══════════
+        let counterStarted = false;
+        function animateCounters() {
+            if (counterStarted) return;
+            const counters = document.querySelectorAll('.stat-number');
+            const statsSection = document.querySelector('.stats');
+            const sectionTop = statsSection.getBoundingClientRect().top;
+
+            if (sectionTop < window.innerHeight - 100) {
+                counterStarted = true;
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000;
+                    const step = target / (duration / 16);
+                    let current = 0;
+
+                    const updateCounter = () => {
+                        current += step;
+                        if (current < target) {
+                            counter.textContent = Math.floor(current) + '+';
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target + '+';
+                        }
+                    };
+                    updateCounter();
+                });
+            }
+        }
+
+        window.addEventListener('scroll', animateCounters);
+
+        // ═══════════ SHOP BUTTON ═══════════
+        document.getElementById('shopBtn').addEventListener('click', () => {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // ═══════════ ADD TO CART BUTTONS ═══════════
+        document.querySelectorAll('.card-btn').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const card = this.closest('.card');
+                const name = card.querySelector('h3').textContent;
+
+                this.textContent = '✓';
+                this.style.background = 'var(--red)';
+                this.style.borderColor = 'var(--red)';
+                this.style.color = 'white';
+                this.style.transform = 'scale(1.2)';
+
+                setTimeout(() => {
+                    this.textContent = '+';
+                    this.style.background = '';
+                    this.style.borderColor = '';
+                    this.style.color = '';
+                    this.style.transform = '';
+                }, 1500);
+
+                alert('🔥 ' + name + ' added to cart!');
+            });
+        });
+
+        // ═══════════ NEWSLETTER ═══════════
+        function handleSubscribe(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput');
+            alert('🎉 Welcome to the SHADOW-X family! You\'ll hear from us at ' + email.value);
+            email.value = '';
+        }
+
+        // ═══════════ CARD CLICK ═══════════
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function () {
+                const name = this.querySelector('h3').textContent;
+                const price = this.querySelector('.price').textContent;
+                alert('👓 ' + name + ' — ' + price + '\nView full details coming soon!');
+            });
+        });
+    </script>
+
+    <!-- Chatbase Chatbot -->
+    <script>
+        window.embeddedChatbotConfig = {
+            chatbotId: "FmH7dSZKpOpkkhogUg7r7",
+            domain: "www.chatbase.co"
+        }
+    </script>
+    <script
+        src="https://www.chatbase.co/embed.min.js"
+        chatbotId="FmH7dSZKpOpkkhogUg7r7"
+        domain="www.chatbase.co"
+        defer>
+    </script>
+
+</body>
+
+</html>
